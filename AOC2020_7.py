@@ -17,6 +17,17 @@ def visit_children(parents_child_list, current_path):
             visit_children(drules[child].keys(), tuple(current_path))
     return None
 
+def count_children(parents_child_dict):
+    global drules
+    num_bags = 0
+    for child in parents_child_dict.keys():
+        if drules[child] is None:
+            num_bags += int(parents_child_dict[child])
+            return num_bags
+        else:
+            num_bags += int(parents_child_dict[child])*count_children(drules[child])
+    return num_bags
+
 
 def main(start='shiny gold'):
     global winners
@@ -52,6 +63,10 @@ def main(start='shiny gold'):
     print([unmap[w] for w in set(winners)])
     print(f'Number of outer bags = {len(winners)-1}')
 
+    #Answer 2
+    
+    bagcount = count_children(drules[colormap['shiny gold']])
+    print(f'Number of bags inside shiny gold is {bagcount}')
 
 if __name__ == '__main__':
     main('posh brown')
