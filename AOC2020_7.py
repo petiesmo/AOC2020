@@ -21,11 +21,13 @@ def count_children(parents_child_dict):
     global drules
     num_bags = 0
     for child in parents_child_dict.keys():
-        if drules[child] is None:
-            num_bags += int(parents_child_dict[child])
+        if not bool(drules[child]):
+            num_bags = 1
             return num_bags
         else:
-            num_bags += int(parents_child_dict[child])*count_children(drules[child])
+            parent_requires = int(parents_child_dict[child])
+            whats_inside = count_children(drules[child])
+            num_bags += parent_requires*whats_inside
     return num_bags
 
 
