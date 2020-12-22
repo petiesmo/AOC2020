@@ -4,7 +4,9 @@ def neighbors(x,y):
     drow = [-1,0,1]
     dcol = [-1,0,1]
     
-    
+    [('.','Floor'),('L','EmptySeat'),('#','FullSeat')]
+    # if Seat=Empty & All neighbors = Empty, Seat=Occ
+    # if Seat=Occ & count(neighbors) >= 4, Seat=Empty
     
     return new_state
 
