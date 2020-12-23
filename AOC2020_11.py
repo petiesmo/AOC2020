@@ -17,8 +17,19 @@ def main(start=''):
     with open(r'C:\Users\pjsmole\Documents\GitHub\AOC2020\AOC2020_11.inp','r') as f:
         inp = f.readlines()
     
-    inp2 = [line.rstrip('\n') for line in inp]
-    seats = listoflistswithpaddedzeros
+    inp2 = [list(line.rstrip('\n')) for line in inp]
+    inp3 = [line.insert(0,'.').append('.') for line in inp3]
+    pad = ['.' for i in inp3[0]]
+    seats = inp3.insert(0,pad).append(pad)
+    
+    timestep = 0
+    changeflag = True
+    while changeflag:
+	    timestamp += 1
+	    
+	    for row in seats[1:-1]:
+		    for col in row[1:-1]:
+			    
     #Answer 1
     
     #Answer 2
