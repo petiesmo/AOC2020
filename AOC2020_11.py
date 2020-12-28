@@ -21,7 +21,29 @@ class Seats():
 					if self.grid[r+drow][c+dcol] == '#':
 						count += 1
 		return count
-		
+	
+	
+	def num_los(self,r,c):
+		countlos = 0
+		for drow in [-1,0,1]:
+			for dcol in [-1,0,1]:
+				if drow == dcol == 0:
+					pass
+				else:
+					erow,ecol = r,c
+					while True:
+						erow += drow
+						ecol += dcol
+						if erow == 0 or ecol == 0 or erow == self.rows+1 or ecol == self.cols+1:
+							break
+						if self.seat(erow,ecol) == '#':
+							countlos += 1
+							break
+						
+					
+		return countlos
+			
+			
 	def num_occ(self):
 		count = 0
 		for r in self.grid:
@@ -30,9 +52,11 @@ class Seats():
 					count += 1
 		return count
 		
+		
 	def show(self):
 		pprint([''.join(r) for r in self.grid])
 		return None
+		
 #[('.','Floor'),('L','EmptySeat'),('#','FullSeat')]
 # if Seat=Empty & All neighbors = Empty, Seat=Occ
 # if Seat=Occ & count(neighbors) >= 4, Seat=Empty
