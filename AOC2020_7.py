@@ -19,15 +19,14 @@ def visit_children(parents_child_list, current_path):
 
 def count_children(parents_child_dict):
     global drules
-    num_bags = 0
+    num_bags = 1
     for child in parents_child_dict.keys():
         if not bool(drules[child]):
-            num_bags = 1
-            return num_bags
+            whats_inside = 1
         else:
-            parent_requires = int(parents_child_dict[child])
             whats_inside = count_children(drules[child])
-            num_bags += parent_requires*whats_inside
+        parent_requires = int(parents_child_dict[child])
+        num_bags += parent_requires*whats_inside
     return num_bags
 
 
